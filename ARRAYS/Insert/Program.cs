@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 
 int arrSize = 6;
 int [] nums = new int[arrSize];
 int index = 0;
 int max_index = 0;
 int buffer = 0;
+
+Stopwatch stopwatch = new Stopwatch();
+
+stopwatch.Start();
 
 // Filling up an array and printing to console
 while (index < nums.Length){
@@ -31,8 +36,13 @@ while (index < arrSize - 1){
     max_index = 0;
 }
 
+stopwatch.Stop();
+
 Console.WriteLine();
 Console.Write("And now it is sorted: ");
 for (int i = 0; i < nums.Length; i++){
     Console.Write(nums[i] + " ");
 }
+
+Console.WriteLine();
+Console.WriteLine("Code execution time is " + stopwatch.ElapsedMilliseconds + " ms");
