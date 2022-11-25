@@ -1,48 +1,56 @@
-﻿using System;
+﻿/*
+INSERTION SORTING - checking an array by each elem and moving it to a right pos among sorted elems
+This version findes a larger elem and moves it to the end of array swapping elems
+*/
+
+using System;
 using System.Diagnostics;
 
-int arrSize = 6;
-int [] nums = new int[arrSize];
-int index = 0;
-int max_index = 0;
-int buffer = 0;
-
+// Checking execution time
 Stopwatch stopwatch = new Stopwatch();
-
 stopwatch.Start();
 
-// Filling up an array and printing to console
-while (index < nums.Length){
-    nums[index] = new Random().Next(0, 100);
-    index++;
+Console.Clear();
+Console.WriteLine("INSERTION SORTING\n");
+
+// Filling up an array with random nums and printing to console
+int arrSize = 6;
+int [] nums = new int[arrSize];
+int idx = 0;
+while (idx < nums.Length){
+    nums[idx] = new Random().Next(0, 100);
+    idx++;
 }
-Console.Write("We've got a random array: ");
+Console.Write("We've got a random array. ");
 for (int i = 0; i < nums.Length; i++){
     Console.Write(nums[i] + " ");
 }
 
 //Sorting an array
-index = 0;
-while (index < arrSize - 1){
+idx = 0;
+int max_idx = 0;
+int temp = 0;
+while (idx < arrSize - 1){
     for (int i = 0; i < arrSize; i++){
-        if (nums[max_index] < nums[i]){
-            max_index = i;
+        if (nums[max_idx] < nums[i]){
+            max_idx = i;
         }
     }
-    buffer = nums[max_index];
-    nums[max_index] = nums[arrSize -1];
-    nums[arrSize - 1] = buffer;
+    temp = nums[max_idx];
+    nums[max_idx] = nums[arrSize -1];
+    nums[arrSize - 1] = temp;
     arrSize --;
-    max_index = 0;
+    max_idx = 0;
 }
 
-stopwatch.Stop();
-
+// PRINTING SORTED ARRAY
 Console.WriteLine();
-Console.Write("And now it is sorted: ");
+Console.Write("And now array sorted..... ");
 for (int i = 0; i < nums.Length; i++){
     Console.Write(nums[i] + " ");
 }
 
+//Checking and printing code execution time
 Console.WriteLine();
-Console.WriteLine("Code execution time is " + stopwatch.ElapsedMilliseconds + " ms");
+stopwatch.Stop();
+Console.WriteLine("\nCode execution time is " + stopwatch.ElapsedMilliseconds + " ms\n");
